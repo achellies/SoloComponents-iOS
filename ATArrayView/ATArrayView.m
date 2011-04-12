@@ -82,9 +82,15 @@ awakeFromNib is called instead of initWithFrame */
 #pragma mark Item Views
 
 - (void)reloadItems {
+    for (UIView *item in _visibleItems)
+        [item removeFromSuperview];
     [_visibleItems removeAllObjects];
     [_recycledItems removeAllObjects];
-    [self reloadData];
+
+    [self layoutSubviews];
+    _itemCount = [_delegate numberOfItemsInArrayView:self];
+    [self configureItems:YES];
+
 }
 
 - (UIView *)viewForItemAtIndex:(NSUInteger)index {
