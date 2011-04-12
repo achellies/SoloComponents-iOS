@@ -39,6 +39,7 @@ prevent a previous reusable "grid" cell to not show the content of previous cell
 This allows for smoother scrolling and minimizing 'jerkyness' when loading network resources in cells at the tradeoff of memory.
  */
 @property(nonatomic,assign) int preloadBuffer;
+
 @property(nonatomic, assign) IBOutlet id<ATArrayViewDelegate> delegate;
 
 @property(nonatomic, assign) UIEdgeInsets contentInsets;
@@ -56,6 +57,11 @@ This allows for smoother scrolling and minimizing 'jerkyness' when loading netwo
 @property(nonatomic, readonly) NSInteger lastVisibleItemIndex;
 
 - (void)reloadData;  // must be called at least once to display something
+
+
+- (void)reloadItems; 
+/* redisplayItems: same to reloadData, but also remvoes all previous "cached" item views. Useful if you change the datasource on the same grid, but need new views classes.
+ */
 
 - (UIView *)viewForItemAtIndex:(NSUInteger)index;  // nil if not loaded
 
