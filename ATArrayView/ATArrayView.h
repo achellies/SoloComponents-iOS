@@ -18,7 +18,7 @@
     UIEdgeInsets    _contentInsets;
     CGSize          _itemSize;
     CGFloat         _minimumColumnGap;
-    int             _preloadBuffer;
+    NSUInteger      _preloadRowSpan;
     // state
     NSInteger       _itemCount;
     NSMutableSet   *_recycledItems;
@@ -38,8 +38,8 @@ UIView that will be used in the grid because CATiledLayer drawRect happens in th
 prevent a previous reusable "grid" cell to not show the content of previous cell while we continue to render the new cell's content.
 This allows for smoother scrolling and minimizing 'jerkyness' when loading network resources in cells at the tradeoff of memory.
  */
-@property(nonatomic,assign) int preloadBuffer;
-
+@property(nonatomic,readwrite) int preloadBuffer __attribute__ ((deprecated));
+@property(nonatomic,assign) NSUInteger preloadRowSpan;
 @property(nonatomic, assign) IBOutlet id<ATArrayViewDelegate> delegate;
 
 @property(nonatomic, assign) UIEdgeInsets contentInsets;

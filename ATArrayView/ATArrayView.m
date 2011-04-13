@@ -10,7 +10,6 @@
 - (void)configureItems:(BOOL)updateExisting;
 - (void)configureItem:(UIView *)item forIndex:(NSInteger)index;
 - (void)recycleItem:(UIView *)item;
-
 @end
 
 
@@ -23,7 +22,7 @@
 @synthesize minimumColumnGap=_minimumColumnGap;
 @synthesize scrollView=_scrollView;
 @synthesize itemCount=_itemCount;
-@synthesize preloadBuffer=_preloadBuffer;
+@synthesize preloadRowSpan=_preloadRowSpan;
 
 #pragma mark -
 #pragma mark init/dealloc
@@ -44,10 +43,10 @@ awakeFromNib is called instead of initWithFrame */
 -(void) setup {
     _visibleItems = [[NSMutableSet alloc] init];
     _recycledItems = [[NSMutableSet alloc] init];
-
+    
     _itemSize = CGSizeMake(70, 70);
     _minimumColumnGap = 5;
-    _preloadBuffer = 0;
+    _preloadRowSpan = 0;
     _scrollView = [[UIScrollView alloc] initWithFrame:CGRectZero];
     _scrollView.showsVerticalScrollIndicator = YES;
     _scrollView.showsHorizontalScrollIndicator = NO;
@@ -61,6 +60,15 @@ awakeFromNib is called instead of initWithFrame */
     [super dealloc];
 }
 
+-(void)setPreloadBuffer:(int)preloadBuffer {
+    //    #warning : setPreloadBuffer: method is deprecated, use setPreloadRowSpan: instead
+    [self setPreloadRowSpan:preloadBuffer];
+}
+
+-(int)preloadBuffer {
+    //#warning : preloadBuffer method is deprecated, use preloadRowSpan instead
+    return _preloadRowSpan;
+}
 
 #pragma mark -
 #pragma mark Data
@@ -179,13 +187,13 @@ awakeFromNib is called instead of initWithFrame */
     int firstRow = MAX(floorf((CGRectGetMinY(_scrollView.bounds) - _effectiveInsets.top) / (_itemSize.height + _rowGap)), 0);
     //return MIN( firstRow * _colCount, _itemCount - 1);
     //Formula changed to incorporate the 'preload' buffer functionality
-    return MIN( MAX(0,firstRow - (_preloadBuffer)) * _colCount, _itemCount - 1);
+    return MIN( MAX(0,firstRow - (_preloadRowSpan)) * _colCount, _itemCount - 1);
 }
 
 - (NSInteger)lastVisibleItemIndex {
     int lastRow = MIN( ceilf((CGRectGetMaxY(_scrollView.bounds) - _effectiveInsets.top) / (_itemSize.height + _rowGap)), _rowCount - 1);
     //return MIN((lastRow + 1) * _colCount - 1, _itemCount - 1);
-    return MIN((lastRow + (_preloadBuffer + 1)) * _colCount - 1, _itemCount - 1);
+    return MIN((lastRow + (_preloadRowSpan + 1)) * _colCount - 1, _itemCount - 1);
 }
 
 - (CGRect)rectForItemAtIndex:(NSUInteger)index {
