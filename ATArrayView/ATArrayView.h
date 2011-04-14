@@ -18,7 +18,7 @@
     UIEdgeInsets    _contentInsets;
     CGSize          _itemSize;
     CGFloat         _minimumColumnGap;
-    NSUInteger      _preloadRowSpan;
+    int      _preloadRowSpan;
     // state
     NSInteger       _itemCount;
     NSMutableSet   *_recycledItems;
@@ -39,7 +39,7 @@ prevent a previous reusable "grid" cell to not show the content of previous cell
 This allows for smoother scrolling and minimizing 'jerkyness' when loading network resources in cells at the tradeoff of memory.
  */
 @property(nonatomic,readwrite) int preloadBuffer __attribute__ ((deprecated));
-@property(nonatomic,assign) NSUInteger preloadRowSpan;
+@property(nonatomic,assign) int preloadRowSpan;
 @property(nonatomic, assign) IBOutlet id<ATArrayViewDelegate> delegate;
 
 @property(nonatomic, assign) UIEdgeInsets contentInsets;

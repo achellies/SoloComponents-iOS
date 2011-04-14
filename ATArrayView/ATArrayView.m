@@ -46,7 +46,7 @@ awakeFromNib is called instead of initWithFrame */
     
     _itemSize = CGSizeMake(70, 70);
     _minimumColumnGap = 5;
-    _preloadRowSpan = 0;
+    _preloadRowSpan = 1;
     _scrollView = [[UIScrollView alloc] initWithFrame:CGRectZero];
     _scrollView.showsVerticalScrollIndicator = YES;
     _scrollView.showsHorizontalScrollIndicator = NO;
@@ -62,7 +62,7 @@ awakeFromNib is called instead of initWithFrame */
 
 -(void)setPreloadBuffer:(int)preloadBuffer {
     //    #warning : setPreloadBuffer: method is deprecated, use setPreloadRowSpan: instead
-    [self setPreloadRowSpan:preloadBuffer];
+    self.preloadRowSpan = preloadBuffer;
 }
 
 -(int)preloadBuffer {
