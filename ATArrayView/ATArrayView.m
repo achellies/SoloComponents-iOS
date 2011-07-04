@@ -174,7 +174,7 @@ awakeFromNib is called instead of initWithFrame */
     };
 
     _rowCount = (_itemCount + _colCount - 1) / _colCount;
-    _rowGap = 0;
+    _rowGap = _colGap;
 
     _effectiveInsets = UIEdgeInsetsMake(_contentInsets.top + _rowGap,
                                         _contentInsets.left + _colGap,
