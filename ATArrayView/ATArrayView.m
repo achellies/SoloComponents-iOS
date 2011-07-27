@@ -4,7 +4,6 @@
 
 #import "ATArrayView.h"
 
-
 @interface ATArrayView () <UIScrollViewDelegate>
 - (void)setup;
 - (void)configureItems:(BOOL)updateExisting;
@@ -20,6 +19,7 @@
 @synthesize itemSize=_itemSize;
 @synthesize contentInsets=_contentInsets;
 @synthesize minimumColumnGap=_minimumColumnGap;
+@synthesize maximumRowGap=_maximumRowGap;
 @synthesize scrollView=_scrollView;
 @synthesize itemCount=_itemCount;
 @synthesize preloadRowSpan=_preloadRowSpan;
@@ -46,6 +46,7 @@ awakeFromNib is called instead of initWithFrame */
     
     _itemSize = CGSizeMake(70, 70);
     _minimumColumnGap = 5;
+    _maximumRowGap = INFINITY;
     _preloadRowSpan = 1;
     _scrollView = [[UIScrollView alloc] initWithFrame:CGRectZero];
     _scrollView.showsVerticalScrollIndicator = YES;
@@ -174,7 +175,10 @@ awakeFromNib is called instead of initWithFrame */
     };
 
     _rowCount = (_itemCount + _colCount - 1) / _colCount;
-    _rowGap = _colGap;
+    //This is to support when you want to limit the size of the row gap or make it a determinite amount
+    //This can now support having a 0 rowGap without breaking backwards compatibility
+    _rowGap = MIN(_colGap, _maximumRowGap);
+
 
     _effectiveInsets = UIEdgeInsetsMake(_contentInsets.top + _rowGap,
                                         _contentInsets.left + _colGap,

@@ -18,6 +18,7 @@
     UIEdgeInsets    _contentInsets;
     CGSize          _itemSize;
     CGFloat         _minimumColumnGap;
+    CGFloat         _maximumRowGap;
     int      _preloadRowSpan;
     // state
     NSInteger       _itemCount;
@@ -47,6 +48,10 @@ This allows for smoother scrolling and minimizing 'jerkyness' when loading netwo
 @property(nonatomic, assign) CGSize itemSize;
 
 @property(nonatomic, assign) CGFloat minimumColumnGap;
+/* Maximum row gap allows you to limit the size of the spacing between rows. If you want no spacing, set to 0, otherwise
+ it will be set equal to the column gap. By default, maximumRowGap is set to INFINITY so that we always set the rowGap based on
+ the column gap since it is guaranteed to be smaller than INFINITY */
+@property(nonatomic, assign) CGFloat maximumRowGap;
 
 @property(nonatomic, readonly) UIScrollView *scrollView;
 
@@ -57,7 +62,6 @@ This allows for smoother scrolling and minimizing 'jerkyness' when loading netwo
 @property(nonatomic, readonly) NSInteger lastVisibleItemIndex;
 
 - (void)reloadData;  // must be called at least once to display something
-
 
 - (void)reloadItems; 
 /* redisplayItems: same to reloadData, but also remvoes all previous "cached" item views. Useful if you change the datasource on the same grid, but need new views classes.
