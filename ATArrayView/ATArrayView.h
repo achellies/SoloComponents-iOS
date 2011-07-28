@@ -13,7 +13,7 @@
     UIScrollView *_scrollView;
 
     // properties
-    id<ATArrayViewDelegate> _delegate;
+    id<ATArrayViewDelegate> __weak _delegate;
 
     UIEdgeInsets    _contentInsets;
     CGSize          _itemSize;
@@ -41,7 +41,7 @@ This allows for smoother scrolling and minimizing 'jerkyness' when loading netwo
  */
 @property(nonatomic,readwrite) int preloadBuffer __attribute__ ((deprecated));
 @property(nonatomic,assign) int preloadRowSpan;
-@property(nonatomic, assign) IBOutlet id<ATArrayViewDelegate> delegate;
+@property(nonatomic, weak) IBOutlet id<ATArrayViewDelegate> delegate;
 
 @property(nonatomic, assign) UIEdgeInsets contentInsets;
 
