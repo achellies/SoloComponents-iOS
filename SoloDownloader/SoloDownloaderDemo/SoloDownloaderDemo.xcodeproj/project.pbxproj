@@ -202,6 +202,9 @@
 /* Begin PBXProject section */
 		435B6C0913B03935001A10BF /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+			};
 			buildConfigurationList = 435B6C0C13B03935001A10BF /* Build configuration list for PBXProject "SoloDownloaderDemo" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
@@ -381,12 +384,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SoloDownloaderTests/SoloDownloaderTests-Prefix.pch";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "SoloDownloaderTests/SoloDownloaderTests-Info.plist";
 				OTHER_LDFLAGS = (
 					"-framework",
@@ -401,12 +406,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SoloDownloaderTests/SoloDownloaderTests-Prefix.pch";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "SoloDownloaderTests/SoloDownloaderTests-Info.plist";
 				OTHER_LDFLAGS = (
 					"-framework",
@@ -436,6 +443,7 @@
 				435B6C3513B03935001A10BF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		435B6C5813B152F2001A10BF /* Build configuration list for PBXNativeTarget "SoloDownloaderTests" */ = {
 			isa = XCConfigurationList;
@@ -444,6 +452,7 @@
 				435B6C5A13B152F2001A10BF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

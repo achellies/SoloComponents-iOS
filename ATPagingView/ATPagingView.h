@@ -24,7 +24,7 @@
     UIScrollView *_scrollView;
 
     // properties
-    id<ATPagingViewDelegate> _delegate;
+    id<ATPagingViewDelegate> __weak _delegate;
     CGFloat _gapBetweenPages;
     NSInteger _pagesToPreload;
 
@@ -43,7 +43,7 @@
     BOOL _recyclingEnabled;
 }
 
-@property(nonatomic, assign) IBOutlet id<ATPagingViewDelegate> delegate;
+@property(nonatomic, weak) IBOutlet id<ATPagingViewDelegate> delegate;
 
 @property(nonatomic, assign) CGFloat gapBetweenPages;  // default is 20
 

@@ -84,11 +84,10 @@
 }
 
 - (void)dealloc {
-    [_scrollView release], _scrollView = nil;
+    _scrollView = nil;
     _delegate = nil;
-    [_recycledPages release], _recycledPages = nil;
-    [_visiblePages release], _visiblePages = nil;
-    [super dealloc];
+    _recycledPages = nil;
+    _visiblePages = nil;
 }
 
 
@@ -388,7 +387,7 @@
 - (UIView *)dequeueReusablePage {
     UIView *result = [_recycledPages anyObject];
     if (result) {
-        [_recycledPages removeObject:[[result retain] autorelease]];
+        [_recycledPages removeObject:result];
     }
     return result;
 }
@@ -460,8 +459,7 @@
 #pragma mark init/dealloc
 
 - (void)dealloc {
-    [_pagingView release], _pagingView = nil;
-    [super dealloc];
+    _pagingView = nil;
 }
 
 
@@ -469,7 +467,7 @@
 #pragma mark View Loading
 
 - (void)loadView {
-    self.view = self.pagingView = [[[ATPagingView alloc] init] autorelease];
+    self.view = self.pagingView = [[ATPagingView alloc] init];
 }
 
 - (void)viewDidLoad {

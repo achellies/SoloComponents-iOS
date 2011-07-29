@@ -29,7 +29,7 @@
 - (UIView *)viewForPageInPagingView:(ATPagingView *)pagingView atIndex:(NSInteger)index {
     UIView *view = [pagingView dequeueReusablePage];
     if (view == nil) {
-        view = [[[DemoPageView alloc] init] autorelease];
+        view = [[DemoPageView alloc] init];
     }
     return view;
 }
