@@ -53,7 +53,7 @@ This allows for smoother scrolling and minimizing 'jerkyness' when loading netwo
  the column gap since it is guaranteed to be smaller than INFINITY */
 @property(nonatomic, assign) CGFloat maximumRowGap;
 
-@property(nonatomic, readonly) UIScrollView *scrollView;
+@property(nonatomic, strong, readonly) UIScrollView *scrollView;
 
 @property(nonatomic, readonly) NSInteger itemCount;
 
